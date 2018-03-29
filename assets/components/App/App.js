@@ -36,7 +36,7 @@ function App({routes,auth,dispatch}) {
           <div style={{float:'left', padding: 10}}>
           </div>
           <div style={{float:'left', padding: 10}}>
-            <h2 style={{color:'#108ee9'}}>Sails Project Sample</h2>
+            <h2 style={{color:'#108ee9'}}>Sit and Eat</h2>
           </div>
 
 
