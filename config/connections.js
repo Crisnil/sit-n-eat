@@ -40,13 +40,13 @@ module.exports.connections = {
   * Run: npm install sails-mysql                                             *
   *                                                                          *
   ***************************************************************************/
-  someMysqlServer: {
-    adapter: 'sails-mysql',
-    host: 'YOUR_MYSQL_SERVER_HOSTNAME_OR_IP_ADDRESS',
-    user: 'YOUR_MYSQL_USER',
-    password: 'YOUR_MYSQL_PASSWORD',
-    database: 'YOUR_MYSQL_DB'
-  },
+  mysql: {
+      adapter: "sails-mysql",
+      host: "127.0.0.1",
+      user: "root",
+      password: "P@ssw0rd",
+      database: "bedrock"
+  }
 
   /***************************************************************************
   *                                                                          *
@@ -74,12 +74,15 @@ module.exports.connections = {
   *                                                                          *
   *                                                                          *
   ***************************************************************************/
-  somePostgresqlServer: {
-    adapter: 'sails-postgresql',
-    host: 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS',
-    user: 'YOUR_POSTGRES_USER',
-    password: 'YOUR_POSTGRES_PASSWORD',
-    database: 'YOUR_POSTGRES_DB'
+  config: {
+      adapter: 'sails-postgresql',
+      database: 'bedrock',
+      host: 'localhost',
+      user: 'postgres',
+      password: 'password',
+      port: 5432,
+      poolSize: 10,
+      ssl: false
   }
 
 
