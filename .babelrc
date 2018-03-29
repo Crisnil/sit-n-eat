@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    "transform-runtime", "react-html-attrs",
+    ["import", { libraryName: "antd", "style": "css" }] // The difference with the Web platform is that you do not need to set the style
+  ],
+  "presets": ["es2015", "react"]
+}
