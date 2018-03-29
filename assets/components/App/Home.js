@@ -17,7 +17,7 @@ class Home extends React.Component {
           <Alert message={
             <div>
               <div>You are at home</div>
-              <div>Go to <Link to="/test"> Test Page </Link></div>
+              <div>Go to <Link to="/test">Order Page Test </Link></div>
             </div>
           } type="info" />
 

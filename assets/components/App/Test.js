@@ -15,6 +15,7 @@ class Test extends React.Component {
       <Row>
         <Col span={24}>
           <Alert message="Hi! You're at Test Page" type="success" />
+          <div>Go to <Link to="/">Go back to home</Link></div>
         </Col>
       </Row>
     )
