@@ -45,8 +45,8 @@
     "dev": "node webpackDevServer",
     "dist": "cross-env NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "postinstall": "npm run dist",
-    "lift": "sails lift",
-    "foreman": "npm install -g foreman"
+    "lift": "sails lift --prod",
+    "foreman": "npm install foreman"
   },
   "main": "app.js",
   "repository": {
