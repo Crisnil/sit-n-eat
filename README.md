@@ -1,7 +1,6 @@
-# SitNEat
+# Sails + React + Webpack boilerplate
 
-A Sails[Sails](http://sailsjs.org) apps with a [React](https://facebook.github.io/react/) frontend.
-Thanks to Mark Murray <mark@boxfish.com> for sharing the boilerplate
+A boilerplate for [Sails](http://sailsjs.org) apps with a [React](https://facebook.github.io/react/) frontend.
 
 ## Includes
 
@@ -20,7 +19,7 @@ ___
 ### Clone
 
 ```shell
-git clone https://github.com/Crisnil/sitNeat.git
+git clone https://github.com/markmur/sails-react-webpack.git
 cd sails-react-webpack
 npm install
 ```

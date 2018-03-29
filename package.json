@@ -1,8 +1,8 @@
 {
-  "name": "sails-react-webpack",
+  "name": "sit-n-eat",
   "private": false,
   "version": "0.2.0",
-  "description": "A Sails, React & Webpack boilerplate",
+  "description": "A Sails, React & Webpack project for sit and eat",
   "engines": {
     "node": "5.8.0",
     "npm": ">= 3.7.3"
@@ -44,7 +44,9 @@
     "start": "nf start --wrap",
     "dev": "node webpackDevServer",
     "dist": "cross-env NODE_ENV=production webpack -p --config webpack.config.prod.js",
-    "postinstall": "npm run dist"
+    "postinstall": "npm run dist",
+    "lift": "sails lift",
+    "foreman": "npm install -g foreman"
   },
   "main": "app.js",
   "repository": {

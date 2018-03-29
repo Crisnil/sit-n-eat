@@ -20,8 +20,6 @@ module.exports = {
 
   entry: [
     'babel-polyfill',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/dev-server',
     './assets/main.js',
   ],
 
@@ -77,14 +75,8 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.(ttf|eot|svg|woff)(\?[a-z0-9]+)?$/, // fonts files
-        loader: 'file-loader?name=[path][name].[ext]',
-      },
-      {
-        test: /\.jsx?$/, // react files
-        exclude: /node_modules/,
-        loaders: ['babel?presets[]=es2015,presets[]=stage-0,presets[]=react'],
-        include: path.join(__dirname, 'assets'),
+        test: /\.scss$/, // sass files
+        loader: 'style!css!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded',
       },
       {
           test: /\.css$/,
@@ -93,10 +85,6 @@ module.exports = {
       {
           test: /\.sass/,
           loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded&indentedSyntax'
-      },
-      {
-          test: /\.scss/,
-          loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
       },
       {
           test: /\.less/,
@@ -110,10 +98,16 @@ module.exports = {
           test: /\.(png|jpg|gif)$/,
           loader: 'url-loader?limit=8192'
       },
-      // {
-      //   test: /\.scss$/, // sass files
-      //   loader: 'style!css!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded',
-      // },
+      {
+        test: /\.(ttf|eot|svg|woff)(\?[a-z0-9]+)?$/, // fonts files
+        loader: 'file-loader?name=[path][name].[ext]',
+      },
+      {
+        test: /\.jsx?$/, // react files
+        exclude: /node_modules/,
+        loaders: ['babel?presets[]=es2015,presets[]=stage-0,presets[]=react'],
+        include: path.join(__dirname, 'assets'),
+      },
     ],
 
     noParse: /\.min\.js/,
