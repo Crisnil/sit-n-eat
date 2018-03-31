@@ -8,10 +8,7 @@
     "npm": ">= 3.7.3"
   },
   "keywords": [
-    "sails",
-    "react",
-    "webpack",
-    "boilerplate"
+    "sit and eat"
   ],
   "dependencies": {
     "antd": "^3.3.3",
@@ -35,9 +32,11 @@
     "rc": "1.0.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
+    "react-parallax": "^1.6.1",
     "redux-logger": "^3.0.6",
     "sails": "~0.12.2",
     "sails-disk": "~0.10.9",
+    "sails-mysql": "^1.0.0",
     "webpack": "^1.13.0"
   },
   "scripts": {

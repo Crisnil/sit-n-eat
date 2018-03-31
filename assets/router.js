@@ -3,7 +3,7 @@ import { Router, Route, Switch, IndexRoute,IndexRedirect,Redirect } from 'dva/ro
 import RouteWithSubRoutes from './routes/RouteWithSubRoutes';
 import App from './components/App/App.js';
 import Home from './components/App/Home.js';
-import Test from './components/App/Test.js';
+import Mainpage from './components/App/Mainpage.js';
 
 function RouterConfig({ history}) {
 
@@ -18,9 +18,14 @@ function RouterConfig({ history}) {
           component: Home,
         },
         {
-          path: '/test',
+          path: '/login',
           exact: true,
-          component: Test,
+          component: Mainpage,
+        },
+        {
+          path: '/login',
+          exact: true,
+          component: App,
         }
       ]
     }

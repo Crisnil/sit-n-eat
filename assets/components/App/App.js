@@ -1,12 +1,13 @@
 import React from 'react';
-import { Router, Route, Switch } from 'dva/router';
+import { Router, Route, Switch,Link } from 'dva/router';
 import {Layout,Icon ,Popover, Button } from 'antd'
 
 import RouteWithSubRoutes from '../../routes/RouteWithSubRoutes';
 import { connect } from 'dva';
 import _ from 'lodash'
-import { LocaleProvider } from 'antd';
+import { LocaleProvider,Divider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
+import deDE from 'antd/lib/locale-provider/de_De';
 
 
 function App({routes,auth,dispatch}) {
@@ -26,20 +27,14 @@ function App({routes,auth,dispatch}) {
 
 
   return (
-    <LocaleProvider locale={enUS}>
+    <LocaleProvider locale={deDE}>
       <Layout style={{
-        width:'90%',
         marginLeft:'auto',
         marginRight:'auto'
       }}>
         <Layout.Header style={{backgroundColor:'white'}}>
           <div style={{float:'left', padding: 10}}>
           </div>
-          <div style={{float:'left', padding: 10}}>
-            <h2 style={{color:'#108ee9'}}>Sit and Eat</h2>
-          </div>
-
-
           <div style={{float:'right'}}>
 
             {_.get(auth,'account.login','') ?
@@ -47,12 +42,20 @@ function App({routes,auth,dispatch}) {
                 <Button type={"dashed"}><Icon type="user" />{_.get(auth,'account.login','')}</Button>
               </Popover>
               :
-              null
+              <Popover content={content} title="hear " trigger="click">
+                <Button type={"dashed"}><Icon type="user" />Register</Button>
+              <Divider type="vertical"/>
+                <Link to ="/login"><Button type={"dashed"}><Icon type="user" />Login</Button></Link>
+              </Popover>
             }
 
-
-
           </div>
+          <div style={{ padding: 10}}>
+            <center><h2 style={{color:'#108ee9'}}>Sit and Eat</h2></center>
+          </div>
+
+
+
         </Layout.Header>
 
         {
@@ -62,7 +65,7 @@ function App({routes,auth,dispatch}) {
         }
 
         <Layout.Footer style={{backgroundColor:'white'}}>
-          <div style={{textAlign:'center'}}> Copyright 2017 </div>
+          <div style={{textAlign:'center'}}> Copyright 2018 </div>
         </Layout.Footer>
       </Layout>
     </LocaleProvider>
