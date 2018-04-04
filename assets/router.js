@@ -9,16 +9,16 @@ function RouterConfig({ history}) {
 
   const routes = [
     {
-      path: '/',
+      path: '/site',
       component: App,
       routes: [
         {
-          path: '/',
+          path: '/site',
           exact: true,
           component: Home,
         },
         {
-          path: '/homepage',
+          path: '/site/homepage',
           exact: true,
           component: Mainpage,
         },

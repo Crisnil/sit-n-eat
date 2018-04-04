@@ -14,8 +14,11 @@ module.exports = {
     }).catch(function (err) {
       return invalidEmailOrPassword(res);
     })
-  }
+  },
 
+  pingapi: function(res){
+  return res.ok();
+  }
 };
 
 
@@ -29,7 +32,9 @@ function signInUser(req, res, password, user) {
           user: user,
           token: generateToken(user.id)
         }
-        return res.json(200, res, "Successfully signed in", responseData)
+      //  return res.json(200, res, "Successfully signed in", responseData)
+      //  return res.jsonp(responseData)
+      return res.json(200,responseData);
       }
     }
   ).catch(function (err) {

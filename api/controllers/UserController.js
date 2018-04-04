@@ -23,7 +23,7 @@
          user: user,
          token: JwtService.issue({id: user.id})
        }
-       return res.json(200, res, "User created successfully", responseData)
+       return res.json(200, res, "User created successfully",responseData)
      }).catch(function (error) {
          if (error.invalidAttributes){
            return res.json(400, res, error, error.Errors)
