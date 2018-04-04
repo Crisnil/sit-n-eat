@@ -45,7 +45,7 @@ function App({routes,auth,dispatch}) {
               <Popover content={content} title="hear " trigger="click">
                 <Button type={"dashed"}><Icon type="user" />Register</Button>
               <Divider type="vertical"/>
-                <Link to ="/login"><Button type={"dashed"}><Icon type="user" />Login</Button></Link>
+                <Link to ="/homepage"><Button type={"dashed"}><Icon type="user" />Login</Button></Link>
               </Popover>
             }
 

@@ -21,7 +21,7 @@
  */
 
 module.exports.routes = {
-  
+
   // NOTE all routes defined before the 'GET /*' will override
 
   // All GET requests are directed to the app controller which renders our app.
@@ -30,5 +30,6 @@ module.exports.routes = {
     action: 'index',
     skipAssets: true,
   },
-
+  'post /signup': 'UserController.create',
+  'post /login': 'AuthController.login',  
 };

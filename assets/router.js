@@ -18,15 +18,10 @@ function RouterConfig({ history}) {
           component: Home,
         },
         {
-          path: '/login',
+          path: '/homepage',
           exact: true,
           component: Mainpage,
         },
-        {
-          path: '/login',
-          exact: true,
-          component: App,
-        }
       ]
     }
   ];
