@@ -18,7 +18,7 @@ import browserHistory from 'history/createBrowserHistory'
 import 'antd/dist/antd.less'
 import {createLogger} from 'redux-logger';
 import router from './router'
-
+import auth from './models/auth'
 // 1. Initialize
 let  app = null;
 if (process.env.NODE_ENV !== 'production') {
@@ -44,7 +44,8 @@ else {
 
 
 // 3. Model
-// app.model(require("./models/auth"));
+ // app.model(require("./models/auth"));
+ app.model(auth);
 
 // 4. Router
 app.router(router);

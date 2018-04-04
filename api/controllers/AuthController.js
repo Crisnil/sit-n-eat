@@ -17,7 +17,7 @@ module.exports = {
   },
 
   pingapi: function(res){
-  return res.ok();
+  return res.json(200,'OK');
   }
 };
 
@@ -30,7 +30,8 @@ function signInUser(req, res, password, user) {
       } else {
         var responseData = {
           user: user,
-          token: generateToken(user.id)
+          token: generateToken(user.id),
+          isAuthenticated:true
         }
       //  return res.json(200, res, "Successfully signed in", responseData)
       //  return res.jsonp(responseData)

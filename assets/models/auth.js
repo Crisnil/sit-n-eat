@@ -1,83 +1,59 @@
 import {withRouter,routerRedux} from 'dva/router'
-import {get,post} from '../utils/RestClient'
+// import {get,post} from '../utils/RestClient'
+import update from 'react-addons-update'
+import axios from 'axios'
 
 export default {
   namespace: 'auth',
   state: {
     isAuthenticated: false,
     isWrongCredentials: false,
-    account:null,
+    user:{},
     logoutSuccess:false,
     fromStart:false,
     disableSaveEditUser: false
   },
+
   reducers: {
-    accountReceived(state,{account,fromRefresh}){
 
-      return {
-        ...state,
-        isAuthenticated: true,
-        isWrongCredentials: false,
-        account:account,
-        logoutSuccess:false,
-        fromStart:(fromRefresh) ?  false  :true,
-        disableSaveEditUser: false
-      }
+    getAllReadingSuccess(state,{payload}){
+      return update(state,{
+          user: {
+            $set: payload
+          }
+      });
     },
-
-
-
-    logoutSuccess(state,{targetPath}){
-
-      return {
-        ...state,
-        isAuthenticated: false,
-        isWrongCredentials: false,
-        account:null,
-        logoutSuccess:!targetPath,
-        fromStart:false,
-        disableSaveEditUser: false
-      }
-    },
-
-    loginFailed(state){
-
-      return {
-        ...state,
-        isAuthenticated: false,
-        isWrongCredentials: true,
-        account:null,
-        logoutSuccess:false,
-        fromStart:false,
-        disableSaveEditUser: false
-      }
-    }
-
   },
+
   effects: {
-    login:[function *({loginstate,targetPath},{call,put}){
+    login:[function *({payload},{call,put}){
+      axios.create({
+          baseURL: "localhost:3000",
+          timeout: 1000,
+          headers:{
+            'Content-Type': 'application/json;charset=UTF-8',
+          }
+        })
+        try{
+          let reading = null;
+          yield axios.get('/api/login',{
+            params:payload
+          }).then(response => {
+             reading = response.data
+             console.log(response,'mao ni siya');
+           })
 
-      try{
-        yield  call(post,'/api/login',{},{
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          params:loginstate
-        });
-          console.log(response);
-      }
-      catch (error){
-        console.log(error);
+            yield put({
+             type:"getAllReadingSuccess",
+              payload:reading
+            });
+        }
+        catch (error){
+          console.log(error,'error');
+          yield put({ type: 'getAllReadingFailed'});
 
-       yield put({
-          type:'loginFailed'
-        });
-
-        yield call(get,'/api/pingapi');
-
-      }
-
-    },{type: 'takeLatest'}],
+        }
+     },{type: 'takeLatest'}],
 
   },
   subscriptions: {},

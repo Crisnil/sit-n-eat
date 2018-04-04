@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'dva'
 import {
-  Row, Col, Alert,Input,Layout,Divider,Card
+  Row, Col, Alert,Input,Layout,Divider,Card,Button
 } from 'antd'
 import  { Link } from 'dva/router'
 import { Parallax,Background  } from 'react-parallax'
@@ -13,12 +13,23 @@ class Home extends React.Component {
     super(props);
   }
 
+  onTEst = () =>{
+    this.props.dispatch({
+      type:"auth/login",
+      payload:{
+        email:"cacuyado@gmail.com",
+        password:"1234567890"
+      }
+    })
+  }
+
   render() {
     const image1 = "http://www.sitneat.in/App_Themes/105656_1.jpg";
     const insideStyles = { position: 'absolute', top: '50%', left: '20%',width:'500px'};
 
     return (
       <Row>
+      <Button onClick={this.onTEst} > Test gwapo ko</Button>
         <Col span={24}>
         <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
         <Layout style={{
