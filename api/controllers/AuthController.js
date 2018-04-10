@@ -1,60 +1,52 @@
-module.exports = {
+/**
+ * AuthController
+ *
+ * @description :: Server-side logic for managing auths
+ * @help        :: See http://links.sailsjs.org/docs/controllers
+ */
 
-  login: function (req, res) {
+module.exports = {
+	authenticate: function(req, res) {
     var email = req.param('email');
     var password = req.param('password');
 
-    verifyParams(res, email, password)
+    if (!email || !password) {
+      return res.json(401, {err: 'username and password required'});
+    }
 
-    User.findOne({email: email}).then(function (user) {
+    User.findOneByEmail(email, function(err, user) {
       if (!user) {
-        return invalidEmailOrPassword(res);
+        return res.json(401, {err: 'invalid username or password'});
       }
-      signInUser(req, res, password, user)
-    }).catch(function (err) {
-      return invalidEmailOrPassword(res);
+
+      User.validPassword(password, user, function(err, valid) {
+        if (err) {
+          return res.json(403, {err: 'forbidden'});
+        }
+
+        if (!valid) {
+          return res.json(401, {err: 'invalid username or password'});
+        } else {
+          res.json({user: user, token: sailsTokenAuth.issueToken({sid: user.id})});
+        }
+      });
     })
   },
 
-  pingapi: function(res){
-  return res.json(200,'OK');
-  }
-};
-
-
-function signInUser(req, res, password, user) {
-  User.comparePassword(password, user).then(
-    function (valid) {
-      if (!valid) {
-        return this.invalidEmailOrPassword();
-      } else {
-        var responseData = {
-          user: user,
-          token: generateToken(user.id),
-          isAuthenticated:true
-        }
-      //  return res.json(200, res, "Successfully signed in", responseData)
-      //  return res.jsonp(responseData)
-      return res.json(200,responseData);
-      }
+  register: function(req, res) {
+    //TODO: Do some validation on the input
+    if (req.body.password !== req.body.confirmPassword) {
+      return res.json(401, {err: 'Password doesn\'t match'});
     }
-  ).catch(function (err) {
-    return res.json(403, res, "Forbidden")
-  })
-};
 
-
-function invalidEmailOrPassword(res){
-  return res.json(401, res, "Invalid email or password")
-};
-
-function verifyParams(res, email, password){
-  if (!email || !password) {
-    return res.json(401, res, "Email and password required")
+    User.create({email: req.body.email, password: req.body.password}).exec(function(err, user) {
+      if (err) {
+        res.json(err.status, {err: err});
+        return;
+      }
+      if (user) {
+        res.json({user: user, token: sailsTokenAuth.issueToken({sid: user.id})});
+      }
+    });
   }
-};
-
-
-function generateToken(user_id) {
-  return JwtService.issue({id: user_id})
 };

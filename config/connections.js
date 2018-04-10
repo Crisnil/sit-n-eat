@@ -16,30 +16,25 @@
  * (this is to prevent you inadvertently sensitive credentials up to your repository.)
  *
  * For more information on configuration, check out:
- * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.connections.html
+ * http://links.sailsjs.org/docs/config/connections
  */
 
 module.exports.connections = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Local disk storage for DEVELOPMENT ONLY                                  *
-  *                                                                          *
-  * Installed by default.                                                    *
-  *                                                                          *
-  ***************************************************************************/
+  // Local disk storage for DEVELOPMENT ONLY
+  //
+  // Installed by default.
+  //
   // localDiskDb: {
   //   adapter: 'sails-disk'
   // },
 
-  /***************************************************************************
-  *                                                                          *
-  * MySQL is the world's most popular relational database.                   *
-  * http://en.wikipedia.org/wiki/MySQL                                       *
-  *                                                                          *
-  * Run: npm install sails-mysql                                             *
-  *                                                                          *
-  ***************************************************************************/
+  // MySQL is the world's most popular relational database.
+  // http://en.wikipedia.org/wiki/MySQL
+  //
+  // Run:
+  // npm install sails-mysql
+  //
   mysql: {
       adapter: "sails-mysql",
       host: "localhost",
@@ -48,48 +43,37 @@ module.exports.connections = {
       database: "bedrock"
   },
 
-  /***************************************************************************
-  *                                                                          *
-  * MongoDB is the leading NoSQL database.                                   *
-  * http://en.wikipedia.org/wiki/MongoDB                                     *
-  *                                                                          *
-  * Run: npm install sails-mongo                                             *
-  *                                                                          *
-  ***************************************************************************/
+  // MongoDB is the leading NoSQL database.
+  // http://en.wikipedia.org/wiki/MongoDB
+  //
+  // Run:
+  // npm install sails-mongo
+  //
   // someMongodbServer: {
   //   adapter: 'sails-mongo',
   //   host: 'localhost',
   //   port: 27017,
-  //   // user: 'username',
-  //   // password: 'password',
-  //   // database: 'your_mongo_db_name_here'
-  // },
+    // user: 'username',
+    // password: 'password',
+    // database: 'your_mongo_db_name_here'
+  //},
 
-  /***************************************************************************
-  *                                                                          *
-  * PostgreSQL is another officially supported relational database.          *
-  * http://en.wikipedia.org/wiki/PostgreSQL                                  *
-  *                                                                          *
-  * Run: npm install sails-postgresql                                        *
-  *                                                                          *
-  *                                                                          *
-  ***************************************************************************/
-  // config: {
-  //     adapter: 'sails-postgresql',
-  //     database: 'bedrock',
-  //     host: 'localhost',
-  //     user: 'postgres',
-  //     password: 'password',
-  //     port: 5432,
-  //     poolSize: 10,
-  //     ssl: false
-  // },
+  // PostgreSQL is another officially supported relational database.
+  // http://en.wikipedia.org/wiki/PostgreSQL
+  //
+  // Run:
+  // npm install sails-postgresql
+  //
+  // somePostgresqlServer: {
+  //   adapter: 'sails-postgresql',
+  //   host: 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS',
+  //   user: 'YOUR_POSTGRES_USER',
+  //   password: 'YOUR_POSTGRES_PASSWORD',
+  //   database: 'YOUR_POSTGRES_DB'
+  // }
 
 
-  /***************************************************************************
-  *                                                                          *
-  * More adapters: https://github.com/balderdashy/sails                      *
-  *                                                                          *
-  ***************************************************************************/
+  // More adapters:
+  // https://github.com/balderdashy/sails
 
 };

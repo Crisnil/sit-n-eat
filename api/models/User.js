@@ -1,55 +1,58 @@
 /**
- * User.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
- */
- var Promise = require("bluebird");
- var bcrypt = require("bcrypt")
+* User.js
+*
+* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @docs        :: http://sailsjs.org/#!documentation/models
+*/
+var bcrypt = require('bcrypt');
 
- module.exports = {
+module.exports = {
 
-   attributes: {
-     email: {
-       type: "email",
-       required: true,
-       unique: true
-     },
-     password: {
-       type: "string",
-       minLength: 6,
-       protected: true,
-       required: true,
-       columnName: "encryptedPassword"
-     },
+  schema: true,
 
-     toJSON: function () {
-       var obj = this.toObject();
-       delete obj.password;
-       return obj;
-     }
-   },
+  attributes: {
+    email: {
+      type: 'string',
+      required: true,
+      unique: true
+    },
+    encryptedPassword: {
+      type: 'string'
+    },
+    messages: {
+      collection: 'message',
+      via: 'user'
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.encryptedPassword;
+      return obj;
+    }
+  },
 
-   beforeCreate: function(values, cb){
-     bcrypt.hash(values.password, 10, function (err, hash) {
-       if (err) return cb(err);
-       values.password = hash;
-       cb();
-     });
-   },
+  beforeCreate: function(values, next) {
+    bcrypt.genSalt(10, function(err, salt) {
+      if (err) return next(err);
 
-   comparePassword: function (password, user) {
-     return new Promise(function (resolve, reject) {
-       bcrypt.compare(password, user.password, function (err, match) {
-         if (err) reject(err);
+      bcrypt.hash(values.password, salt, function(err, hash) {
+        if (err) return next(err);
 
-         if (match) {
-           resolve(true);
-         } else {
-           reject(err);
-         }
-       })
-     });
-   }
+        values.encryptedPassword = hash;
+        next();
+      });
+    });
+  },
 
- };
+  validPassword: function(password, user, cb) {
+    bcrypt.compare(password, user.encryptedPassword, function(err, match) {
+      if (err) cb(err);
+
+      if (match) {
+        cb(null, true);
+      } else {
+        cb(err);
+      }
+    });
+  }
+};
+

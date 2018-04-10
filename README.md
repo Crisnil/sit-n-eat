@@ -1,58 +1,23 @@
-# Sails + React + Webpack boilerplate
+# sails-react-webpack
 
-A boilerplate for [Sails](http://sailsjs.org) apps with a [React](https://facebook.github.io/react/) frontend.
+A simple Sails and React starter app
 
-## Includes
+To run project, please follow this steps,
 
-* [Sails](http://sailsjs.org)
-* [React](https://facebook.github.io/react/)
-* [Babel with ES2015](https://babeljs.io)
-* [React Router](https://github.com/reactjs/react-router)
-* [sails-hook-autoreload](https://github.com/sgress454/sails-hook-autoreload)
-* [Sass](https://github.com/jtangelder/sass-loader)
-* [Autoprefixer](https://github.com/passy/autoprefixer-loader)
-* [React Hot Loader](https://github.com/gaearon/react-hot-loader)
+#Steps
 
+Install packages and depencies
 
-___
+`npm install`
 
-### Clone
-
-```shell
-git clone https://github.com/markmur/sails-react-webpack.git
-cd sails-react-webpack
-npm install
-```
-
-___
-
-### Run (development)
-
-There are multiple ways to run the project in development as sails and webpack-dev-server run independently. The easiest way is to use [Foreman](https://github.com/theforeman/foreman) (`npm install -g foreman`) and run:
-
-```shell
-nf start
-```
-
-This will start all processes listed in the `Procfile`.
-
-The alternative is to manually run each process in separate terminal windows.
-
-To view your app, go to `http://localhost:3000` in your browser.
-___
-
-### Run (Production)
-
-Wepack builds the bundle files on `postinstall` and sails is lifted the same way it's always lifted in production:
-
-```shell
-sails lift --prod
-```
-
-You can also manually run webpack with `npm run dist`.
-
-___
-
-### Generate Components
-
-Use [react-component-gen](https://github.com/markmur/react-component-gen) to generate new components on the fly.
+For Development environment, we just run,
+  
+  `npm run start`
+  
+  This command will start and open webpack dev-server and sails in dev mode.
+  
+  If you want to take a different approach. You might compile the assets first and then start sails to serve assets as it normally does in production. You might proceed with:
+  
+* `npm run build`: Builds the project's assets in the production environment. Add `build:dev` for development, it won't minify javascript or CSS.
+* `npm run dev`: Will start running sails in dev environment (run `npm run build:dev` before).
+* `npm run prod`: Will run sails in the production environment. You should use this for deploying to a public server (run `npm run build:prod` before).
